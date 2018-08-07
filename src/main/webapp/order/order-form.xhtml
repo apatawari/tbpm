@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js" />
+	<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" />
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+
+</h:head>
+
+<ui:composition template="../layout.xhtml">
+
+	<ui:define name="content">
+		<h:form id="orderForm">
+			<p:panel header="Order Details">
+				<h:panelGrid columns="1">
+				
+					<div class="form-group">
+				        <label for="voucher-number" class="control-label required-field">#{msg['voucher_number']}:</label>
+				        <h:inputText type="text" class="form-control" id="voucher-number" value="#{orderController.orderEntry.lastVoucherNumber}" />		
+				        <rich:message styleClass="error-message" id="voucher-number" for="voucher-number"/>
+				    </div>
+				                      						
+					<h:commandButton value="Save" action="#{orderController.save}" /> 
+				</h:panelGrid>
+			</p:panel>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>

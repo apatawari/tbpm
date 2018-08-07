@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"	
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:rich="http://richfaces.org/rich" 
+	xmlns:g="http://base.google.com/ns/1.0" 
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough" xml:lang="en" lang="en">
+
+    <ui:composition>
+	    <h:outputText value="&lt;!--[if IE]&gt;" escape="false"/>
+	    	<base href="#{configComponent.requestProtocol}:#{configComponent.relativeHostURL}/"/>
+	    <h:outputText value="&lt;![endif]--&gt;"  escape="false"/>
+	    <h:outputText value="&lt;!--[if !IE]&gt; --&gt;"  escape="false"/>
+	    	<base href="#{configComponent.relativeHostURL}/"/>
+	    <h:outputText value="&lt;!-- &lt;![endif]--&gt;"  escape="false"/>
+
+		<title>#{msg['application.title']}</title>
+	    <meta charset="utf-8" />
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1" />
+	    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	    <meta name="description" content="" />
+	    <meta name="author" content="" />
+	    <link rel="shortcut icon" href="theme/motive/css/images/favicon.ico" />
+
+	    <!-- Bootstrap Core CSS -->
+	    <link href="theme/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+	
+	    <!-- MetisMenu CSS -->
+	    <link href="theme/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet"/>
+	
+	    <!-- Timeline CSS -->
+	    <link href="theme/sb/css/timeline.css" rel="stylesheet"/>
+	
+	    <!-- Custom CSS -->
+	    <link href="theme/sb/css/sb-admin-2.css" rel="stylesheet"/>
+	
+	    <!-- Morris Charts CSS -->
+	    <link href="theme/bower_components/morrisjs/morris.css" rel="stylesheet"/>
+	
+	    <!-- Custom Fonts -->
+	    <link href="theme/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+	
+		<link rel="stylesheet" href="theme/motive/css/fonts.css" />
+		<script src="theme/ckeditor/ckeditor.js" type="text/javascript"></script>
+		
+	    <!-- Moment DateRangePicker CSS -->
+	    <link href="theme/daterangepicker/css/daterangepicker.css" rel="stylesheet"/>
+		
+		<link href="theme/tokeninput/css/token-input.css" rel="stylesheet" type="text/css"/>
+		<link href="theme/tokeninput/css/token-input-facebook.css" rel="stylesheet" type="text/css"/>
+		
+		<link href="theme/jquery-growl/jquery.growl.css" rel="stylesheet" type="text/css"/>
+		
+		<link href="theme/motive/css/motive.css?v=#{configComponent.buildVersion}" rel="stylesheet"/>
+		
+	    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	    <!--[if lt IE 9]>
+	        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	    <![endif]-->
+
+		<script type="text/javascript">
+			//<![CDATA[  
+				    
+				function changeClass(theObject, theClass)
+				{
+					document.getElementById(theObject).className = theClass;
+				}
+				function makeVisible(theObject)
+				{
+					var theThing = document.getElementById(theObject).className;
+					changeClass(theObject, "visible");
+				}
+				function makeInvisible(theObject)
+				{
+					var theThing = document.getElementById(theObject).className;
+					changeClass(theObject, "hidden");
+				}	
+			    function toggleVisibility(theObject) {
+			    	var theThing = document.getElementById(theObject).className;
+			    	if(document.getElementById(theObject).className == 'hidden')
+			    		makeVisible(theObject)
+			    	else
+			    		makeInvisible(theObject)
+			    }
+                function expandAll() {
+                    $('#expandAllButton').hide();
+                    $('#collapseAllButton').show();
+                    $('.panel-collapse:not(".in")').collapse('show');
+                    $(".indicator").removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-up");
+                }
+                function collapseAll() {
+                    $('#expandAllButton').show();
+                    $('#collapseAllButton').hide();
+                    $('.panel-collapse.in').collapse('hide');
+                    $(".indicator").removeClass("glyphicon-chevron-up").addClass("glyphicon-chevron-down");
+                } 			    
+				$(document).ready(function() {
+                    $('#accordion .accordion-toggle').click(function (e){
+                        $(e.target).parent().parent().find("i.indicator").toggleClass('glyphicon-chevron-up glyphicon-chevron-down');
+                    });     
+					$('.modal-content').resizable({
+					    alsoResize: ".modal-dialog",
+					});
+					$('.modal-dialog').not("#artifactCQLModalDialog").draggable();
+
+					$('.modal').on('show.bs.modal', function () {
+					    $(this).find('.modal-body').css({
+					        'max-height':'100%'
+					    });
+					});
+                	$('.modal').on('shown.bs.modal', function () {
+               		  	$(this).find('input[type=text],textarea,select').filter(':visible:first').focus();
+                	}) 
+					$.fn.modal.Constructor.DEFAULTS.backdrop = 'static';
+                	$.fn.modal.Constructor.DEFAULTS.keyboard = 'false';
+                	
+					makeInvisible('center-loading');
+				    $("#wrapper").css("opacity", 1.0);	
+				    $('#wrapper').find(':input').prop('disabled', false);
+				    $('#wrapper a').unbind("click");
+				});																    
+			//]]>
+		</script>			
+    </ui:composition>
+</html>

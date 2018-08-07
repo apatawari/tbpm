@@ -1,0 +1,113 @@
+/* ------------------------------------------------------------ *\
+	Bernina Sans Font Family
+\* ------------------------------------------------------------ */
+
+@font-face {
+	font-family: "BerninaSans";
+	src: url("fonts/BerninaSans_300_normal_1427125205.eot");
+	src: url("fonts/BerninaSans_300_normal_1427125205.eot?#iefix") format("embedded-opentype"),
+		url("fonts/BerninaSans_300_normal_1427125205.svg#BerninaSans") format("svg"),
+		url("fonts/BerninaSans_300_normal_1427125205.woff") format("woff"),
+		url("fonts/BerninaSans_300_normal_1427125205.ttf") format("truetype");
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "BerninaSans";
+	src: url("fonts/BerninaSans_300_italic_1427125205.eot");
+	src: url("fonts/BerninaSans_300_italic_1427125205.eot?#iefix") format("embedded-opentype"),
+		url("fonts/BerninaSans_300_italic_1427125205.svg#BerninaSans") format("svg"),
+		url("fonts/BerninaSans_300_italic_1427125205.woff") format("woff"),
+		url("fonts/BerninaSans_300_italic_1427125205.ttf") format("truetype");
+	font-weight: 300;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: "BerninaSans";
+	src: url("fonts/BerninaSans_400_normal_1427125205.eot");
+	src: url("fonts/BerninaSans_400_normal_1427125205.eot?#iefix") format("embedded-opentype"),
+		url("fonts/BerninaSans_400_normal_1427125205.svg#BerninaSans") format("svg");
+/*		url("fonts/BerninaSans_400_normal_1427125205.woff") format("woff"),
+		url("fonts/BerninaSans_400_normal_1427125205.ttf") format("truetype");*/
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "BerninaSans";
+	src: url("fonts/BerninaSans_400_italic_1427125205.eot");
+	src: url("fonts/BerninaSans_400_italic_1427125205.eot?#iefix") format("embedded-opentype"),
+		url("fonts/BerninaSans_400_italic_1427125205.svg#BerninaSans") format("svg");
+/*		url("fonts/BerninaSans_400_italic_1427125205.woff") format("woff"),
+		url("fonts/BerninaSans_400_italic_1427125205.ttf") format("truetype"); */
+	font-weight: 400;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: "BerninaSans";
+	src: url("fonts/BerninaSans_600_normal_1427125205.eot");
+	src: url("fonts/BerninaSans_600_normal_1427125205.eot?#iefix") format("embedded-opentype"),
+		url("fonts/BerninaSans_600_normal_1427125205.svg#BerninaSans") format("svg");
+/*		url("fonts/BerninaSans_600_normal_1427125205.woff") format("woff"),
+		url("fonts/BerninaSans_600_normal_1427125205.ttf") format("truetype"); */
+	font-weight: 600;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "BerninaSans";
+	src: url("fonts/BerninaSans_600_italic_1427125205.eot");
+	src: url("fonts/BerninaSans_600_italic_1427125205.eot?#iefix") format("embedded-opentype"),
+		url("fonts/BerninaSans_600_italic_1427125205.svg#BerninaSans") format("svg"),
+		url("fonts/BerninaSans_600_italic_1427125205.woff") format("woff"),
+		url("fonts/BerninaSans_600_italic_1427125205.ttf") format("truetype");
+	font-weight: 600;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: "BerninaSans";
+	src: url("fonts/BerninaSans_700_italic_1427125205.eot");
+	src: url("fonts/BerninaSans_700_italic_1427125205.eot?#iefix") format("embedded-opentype"),
+		url("fonts/BerninaSans_700_italic_1427125205.svg#BerninaSans") format("svg"),
+		url("fonts/BerninaSans_700_italic_1427125205.woff") format("woff"),
+		url("fonts/BerninaSans_700_italic_1427125205.ttf") format("truetype");
+	font-weight: 700;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: "BerninaSans";
+	src: url("fonts/BerninaSans_700_normal_1427125205.eot");
+	src: url("fonts/BerninaSans_700_normal_1427125205.eot?#iefix") format("embedded-opentype"),
+		url("fonts/BerninaSans_700_normal_1427125205.svg#BerninaSans") format("svg");
+/*		url("fonts/BerninaSans_700_normal_1427125205.woff") format("woff"),
+		url("fonts/BerninaSans_700_normal_1427125205.ttf") format("truetype"); */
+	font-weight: 700;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "BerninaSans";
+	src: url("fonts/BerninaSans_900_italic_1427125205.eot");
+	src: url("fonts/BerninaSans_900_italic_1427125205.eot?#iefix") format("embedded-opentype"),
+		url("fonts/BerninaSans_900_italic_1427125205.svg#BerninaSans") format("svg"),
+		url("fonts/BerninaSans_900_italic_1427125205.woff") format("woff"),
+		url("fonts/BerninaSans_900_italic_1427125205.ttf") format("truetype");
+	font-weight: 900;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: "BerninaSans";
+	src: url("fonts/BerninaSans_900_normal_1427125205.eot");
+	src: url("fonts/BerninaSans_900_normal_1427125205.eot?#iefix") format("embedded-opentype"),
+		url("fonts/BerninaSans_900_normal_1427125205.svg#BerninaSans") format("svg"),
+		url("fonts/BerninaSans_900_normal_1427125205.woff") format("woff"),
+		url("fonts/BerninaSans_900_normal_1427125205.ttf") format("truetype");
+	font-weight: 900;
+	font-style: normal;
+}

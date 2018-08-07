@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"	
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:rich="http://richfaces.org/rich" 
+	xmlns:g="http://base.google.com/ns/1.0" 
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough" xml:lang="en" lang="en">
+
+    <ui:composition>
+		<div class="footer">
+			<p style="color: #{loginComponent.fullName == null ? '#dbd5c8;' : '#696057;'} font-size: 14px;">
+				© #{utilComponent.getCopyrightYearString()} #{msg['application.copyright']}.
+			</p>
+			<h:outputText style="float: right; font-size: 12px" value="#{configComponent.buildVersion}"></h:outputText>
+		</div>
+ 
+ 		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css" />
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+	
+	    <!-- Bootstrap Core JavaScript -->
+	    <script src="theme/bootstrap/dist/js/bootstrap.min.js"></script>
+	
+	    <!-- Metis Menu Plugin JavaScript -->
+	    <script src="theme/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+	
+	    <!-- Morris Charts JavaScript -->
+	    <script src="theme/bower_components/raphael/raphael-min.js"></script>
+	    <script src="theme/bower_components/morrisjs/morris.min.js"></script>
+	
+	    <!-- Custom Theme JavaScript -->
+	    <script src="theme/sb/js/sb-admin-2.js"></script>	
+	    
+	    <!-- Custom Theme JavaScript -->
+	    <script src="theme/daterangepicker/js/moment.min.js"></script>
+	    <script src="theme/daterangepicker/js/daterangepicker.js"></script>	
+	    <script src="theme/tokeninput/js/jquery.tokeninput.js"></script>	
+	    <script src="theme/jquery-growl/jquery.growl.js"></script>   
+    
+		<script type="text/javascript">
+			//<![CDATA[  
+				$(document).ready(function() {
+					$('#accordion .accordion-toggle').click(function (e){
+						$(e.target).parent().parent().find("i.indicator").toggleClass('glyphicon-chevron-up glyphicon-chevron-down');
+					});		
+				});																    
+			//]]>
+		</script>	    
+    </ui:composition>
+</html>

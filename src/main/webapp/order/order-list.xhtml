@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+	        <script language="javascript" src="theme/codemirror/js/codemirror.js" />
+	        <script language="javascript" src="theme/codemirror/js/clike.js" />
+	        <script language="javascript" src="theme/codemirror/js/show-hint.js" />       
+	        <script language="javascript" src="theme/codemirror/js/lang-hint.js" />
+	        <script language="javascript" src="theme/codemirror/js/matchbrackets.js" />
+	        <script language="javascript" src="theme/codemirror/js/closebrackets.js" />
+	        <link href="theme/codemirror/css/codemirror.css" rel="stylesheet" />
+	        <link href="theme/codemirror/css/show-hint.css" rel="stylesheet" />
+</h:head>
+
+ <ui:composition template="../layout.xhtml">
+
+	<ui:define name="content">
+		<h:form id="form">
+		
+			<h:selectOneMenu value="#{listOrders.searchOn}">
+   				<f:selectItem itemValue="Marka" itemLabel="Marka" />
+   				<f:selectItem itemValue="PartyName" itemLabel="Party Name" />
+   				<f:selectItem itemValue="Quality" itemLabel="Quality" />
+			</h:selectOneMenu>
+			
+			<div class="input-group custom-search-form">
+				<h:outputLabel for="search"><b>#{msg['search']}:</b></h:outputLabel>
+    				<h:inputText id="search" value="#{listOrders.searchString}" width="100"  valueChangeListener="#{listOrders.searchStringChanged}" >
+    					<f:ajax execute="search" event="blur" />
+    				</h:inputText>
+    			
+    			</div>
+    
+    			
+    		
+    			<div style="clear:left;height:30px"></div>
+    			
+    
+			<p:panel header="Order Inward List">
+				<p:dataTable id="table"  tableStyle="table-layout: auto;" var="order" value="#{listOrders.orderInwardEntries}">
+					
+					<p:column>
+						<f:facet name="header">#{msg['lot_number']}</f:facet>
+						<h:outputText value="#{order.lotNumber}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">#{msg['lr_number']}</f:facet>
+						<h:outputText value="#{order.lrNumber}" />
+					</p:column>
+					
+					
+					<p:column>
+						<f:facet name="header">#{msg['quality']}</f:facet>
+						<h:outputText value="#{order.quality}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">#{msg['marka']}</f:facet>
+						<h:outputText value="#{order.marka}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">#{msg['party_name']}</f:facet>
+						<h:outputText value="#{order.partyName}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">#{msg['bill_number']}</f:facet>
+						<h:outputText value="#{order.billNumber}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">#{msg['bill_amount']}</f:facet>
+						<h:outputText value="#{order.billAmount}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">#{msg['bill_date']}</f:facet>
+						<h:outputText value="#{order.billDate.time}" > <f:convertDateTime pattern="dd/MM/yyyy"/> </h:outputText>
+						
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">#{msg['than']}</f:facet>
+						<h:outputText value="#{order.thanQuantity}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">#{msg['meters']}</f:facet>
+						<h:outputText value="#{order.meters}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">#{msg['order_number']}</f:facet>
+						<h:outputText value="#{order.orderNumber}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">#{msg['bale_quantity']}</f:facet>
+						<h:outputText value="#{order.baleQuantity}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">#{msg['rate']}</f:facet>
+						<h:outputText value="#{order.rate}" />
+					</p:column>
+					
+				<!-- 	<p:column>
+						<f:facet name="header">Action</f:facet>
+						<h:commandButton id="delete-button"
+										 action="#{listOrders.delete(order)}"
+										 value="Delete" />
+					</p:column>  -->
+				</p:dataTable>
+			</p:panel>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>

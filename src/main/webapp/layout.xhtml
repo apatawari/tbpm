@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+<f:view>
+<h:head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title><ui:insert name="title">TCM</ui:insert></title>
+	
+	 <!-- MetisMenu CSS -->
+	    <link href="theme/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet"/>
+	
+	    <!-- Timeline CSS -->
+	    <link href="theme/sb/css/timeline.css" rel="stylesheet"/>
+	
+	    <!-- Custom CSS -->
+	    <link href="theme/sb/css/sb-admin-2.css" rel="stylesheet"/>
+	
+	    <!-- Morris Charts CSS -->
+	    <link href="theme/bower_components/morrisjs/morris.css" rel="stylesheet"/>
+	
+	    <!-- Custom Fonts -->
+	    <link href="theme/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+	
+		<link rel="stylesheet" href="theme/motive/css/fonts.css" />
+		<script src="theme/ckeditor/ckeditor.js" type="text/javascript"></script>
+		
+	    <!-- Moment DateRangePicker CSS -->
+	    <link href="theme/daterangepicker/css/daterangepicker.css" rel="stylesheet"/>
+		
+		<link href="theme/tokeninput/css/token-input.css" rel="stylesheet" type="text/css"/>
+		<link href="theme/tokeninput/css/token-input-facebook.css" rel="stylesheet" type="text/css"/>
+		
+		<link href="theme/jquery-growl/jquery.growl.css" rel="stylesheet" type="text/css"/>
+		
+		<link href="theme/motive/css/motive.css?v=#{configComponent.buildVersion}" rel="stylesheet"/>
+	
+</h:head>
+<h:body>
+	<div class="ui-g">
+		<div class="ui-g-12">
+			<p:growl for="errors" showDetail="true" autoUpdate="true"/>
+		</div>
+		
+		<div class="ui-g-12">
+			<p:toolbar>
+				<f:facet name="left">
+					<!-- <p:button href="/" value="List of Products" />
+					<p:button href="/product" value="New Product" />  -->
+					<p:button href="/order" value="Order Entry" />
+					<p:button href="/" value="Order List" />
+				</f:facet>
+			</p:toolbar>
+		</div>
+		<div class="ui-g-12">
+			<ui:insert name="content">Order Entry</ui:insert>
+		</div>
+	</div>
+</h:body>
+</f:view>
+</html>

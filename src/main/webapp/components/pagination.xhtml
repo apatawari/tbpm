@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"	
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:rich="http://richfaces.org/rich" 
+	xmlns:g="http://base.google.com/ns/1.0" 
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough" xml:lang="en" lang="en">
+
+    <ui:composition>
+		<div style="display: block;">
+			<div class="pagination-prompt" style="float: left;">
+				<h:outputText value="#{msg['showing']}" />&nbsp;<h:outputText value="#{listComponent['pageStartOffset']}" />&nbsp;<h:outputText value="#{msg['to']}" />&nbsp;<h:outputText value="#{listComponent['pageEndOffset']}" />&nbsp;<h:outputText value="#{msg['of']}" />&nbsp;<h:outputText value="#{listComponent['totalCount']}" />
+			</div>
+			<div style="float: right;">
+				<ul class="pagination">
+					<h:panelGroup
+						rendered="#{listComponent['currentPage'] &gt; 1 and not empty items and listComponent['currentPage'] != -1}">
+						<li><a href="javascript: void(0)"
+							onclick="#{newPageJSFunction}(#{listComponent['currentPage']-1})">&laquo;</a></li>
+					</h:panelGroup>
+					<h:panelGroup
+						rendered="#{listComponent['currentPage'] &gt; 1 and not empty items and listComponent['currentPage'] != -1}">
+						<li><a href="javascript: void(0)"
+							onclick="#{newPageJSFunction}(1)">1</a></li>
+					</h:panelGroup>
+					<h:panelGroup rendered="#{listComponent['currentPage'] &gt; 4 and not empty items and listComponent['currentPage'] != -1}">
+						<li><a href="javascript: void(0)">...</a></li>
+					</h:panelGroup>
+					<h:panelGroup
+						rendered="#{listComponent['currentPage'] &gt; 4 and not empty items and listComponent['currentPage'] != -1}">
+						<li><a href="javascript: void(0)"
+							onclick="#{newPageJSFunction}(#{listComponent['currentPage']-3})">#{listComponent['currentPage']-3}</a></li>
+					</h:panelGroup>
+					<h:panelGroup
+						rendered="#{listComponent['currentPage'] &gt; 3 and not empty items and listComponent['currentPage'] != -1}">
+						<li><a href="javascript: void(0)"
+							onclick="#{newPageJSFunction}(#{listComponent['currentPage']-2})">#{listComponent['currentPage']-2}</a></li>
+					</h:panelGroup>
+					<h:panelGroup
+						rendered="#{listComponent['currentPage'] &gt; 2 and not empty items and listComponent['currentPage'] != -1}">
+						<li><a href="javascript: void(0)"
+							onclick="#{newPageJSFunction}(#{listComponent['currentPage']-1})">#{listComponent['currentPage']-1}</a></li>
+					</h:panelGroup>
+					<h:panelGroup
+						rendered="#{not empty listComponent['pageStartOffset'] and not empty listComponent['pageEndOffset'] and not empty items and listComponent['currentPage'] != -1}">
+						<li class="active"><a href="javascript: void(0)">#{listComponent['currentPage']}</a></li>
+					</h:panelGroup>
+					<h:panelGroup
+						rendered="#{listComponent['currentPage'] &lt; listComponent['lastPage'] - 1 and not empty items and listComponent['currentPage'] != -1}">
+						<li><a href="javascript: void(0)"
+							onclick="#{newPageJSFunction}(#{listComponent['currentPage']+1})">#{listComponent['currentPage']+1}</a></li>
+					</h:panelGroup>
+					<h:panelGroup
+						rendered="#{listComponent['currentPage'] &lt; listComponent['lastPage'] - 2 and not empty items and listComponent['currentPage'] != -1}">
+						<li><a href="javascript: void(0)"
+							onclick="#{newPageJSFunction}(#{listComponent['currentPage']+2})"
+							class="next">#{listComponent['currentPage']+2}</a></li>
+					</h:panelGroup>
+					<h:panelGroup
+						rendered="#{listComponent['currentPage'] &lt; listComponent['lastPage'] - 3 and not empty items and listComponent['currentPage'] != -1}">
+						<li><a href="javascript: void(0)"
+							onclick="#{newPageJSFunction}(#{listComponent['currentPage']+3})"
+							class="next">#{listComponent['currentPage']+3}</a></li>
+					</h:panelGroup>
+					<h:panelGroup rendered="#{listComponent['currentPage'] &lt; listComponent['lastPage'] - 3 and not empty items and listComponent['currentPage'] != -1}">
+						<li><a href="javascript: void(0)">...</a></li>
+					</h:panelGroup>
+					<h:panelGroup
+						rendered="#{listComponent['currentPage'] &lt; listComponent['lastPage'] and not empty items and listComponent['currentPage'] != -1}">
+						<li><a href="javascript: void(0)"
+							onclick="#{newPageJSFunction}(#{listComponent['lastPage']})"
+							class="next">#{listComponent['lastPage']}</a></li>
+					</h:panelGroup>
+					<h:panelGroup
+						rendered="#{listComponent['currentPage'] &lt; listComponent['lastPage'] and not empty items and listComponent['currentPage'] != -1}">
+						<li><a href="javascript: void(0)"
+							onclick="#{newPageJSFunction}(#{listComponent['currentPage']+1})">&raquo;</a></li>
+					</h:panelGroup>
+				</ul>
+			</div>
+		</div>
+	</ui:composition>
+</html>

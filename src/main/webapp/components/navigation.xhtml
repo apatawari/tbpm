@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"	
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:rich="http://richfaces.org/rich" 
+	xmlns:g="http://base.google.com/ns/1.0" 
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough" xml:lang="en" lang="en">
+
+	<ui:composition>
+		<script type="text/javascript">
+			//<![CDATA[ 
+			           
+				function toggleSidebar() {
+					if($('#page-wrapper').hasClass('expand-page')) {
+						$('#page-wrapper').removeClass('expand-page');
+						$('#page-sidebar').removeClass('hide-sidebar');
+					}
+					else {
+						$('#page-wrapper').addClass('expand-page');
+						$('#page-sidebar').addClass('hide-sidebar');
+					}
+				}
+			//]]>
+		</script>	
+		<script type="text/javascript">
+			//<![CDATA[ 
+	            $('body').append('<div id="center-loading" class="hidden"><img alt="#{bundle.loading}..." src="theme/motive/css/images/loader3.gif" /><div></div></div>');
+			    makeVisible('center-loading');  
+			    $("#wrapper").css("opacity",0.3);  
+			    $('#wrapper').find(':input').prop('disabled', true);
+			    $('#wrapper a').click(function(e) {
+			        e.preventDefault();
+			    });	
+			//]]>
+		</script>	
+		
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand">
+                    <img style="cursor: pointer;" onclick="toggleSidebar()" src="theme/motive/css/images/motive_logo_alternate.png" alt="#{msg['application.title']}" />
+                </a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right">
+            
+            	<h:panelGroup rendered="#{not empty loginComponent.fullName}">
+            		<li class="motive-welcome-text">
+            			<h:outputText value="#{msg['welcome']}" /><h:outputText value="#{msg['comma']}" />&nbsp;<h:outputText value="#{loginComponent.fullName}" />
+            		</li>
+            	</h:panelGroup>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <h:panelGroup rendered="#{not empty loginComponent.fullName}">
+                            <li><a href="profile"><i class="fa fa-user fa-fw"></i> #{msg['view_profile']}</a></li>
+                        </h:panelGroup>
+                        <li class="divider"></li>
+                        <li><a href="j_spring_security_logout"><i class="fa fa-sign-out fa-fw"></i> #{msg['sign_out']}</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+
+            <div id="page-sidebar" class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                       	<li style="height:10px;text-align:center;border: none;">&nbsp;</li>
+                       	<li style="height:35px;">&nbsp;</li>
+                       	
+			            <h:panelGroup rendered="#{loginComponent.superAdminRole}">
+			            	<li class="${fn:containsIgnoreCase(request.requestURI, msg['tenants']) ? 'active' : ''}">
+			            		<a href="tenants"><i class="fa fa-users fa-fw"></i>#{msg['tenants']}</a>
+			            	</li>
+			            	<li class="${fn:containsIgnoreCase(request.requestURI, msg['services']) ? 'active' : ''}">
+			            		<a href="services"><i class="fa fa-gears fa-fw"></i>#{msg['services']}</a>
+			            	</li>
+			            </h:panelGroup>
+                       	
+                       	<h:panelGroup rendered="#{loginComponent.tenantUserRole}">
+	                        <!--  <li>
+	                           	<a href="home"><i class="fa fa-dashboard fa-fw"></i> #{msg['dashboard']}</a>
+	                        </li>-->
+	 	                      <li class="${fn:containsIgnoreCase(request.requestURI, 'ruleSet') ? 'active' : ''}">
+		                        <a href="#"><i class="fa fa-upload fa-fw"></i> #{msg['importer']}<span class="fa arrow"></span></a>
+				            	<ul class="nav nav-second-level">					            	
+						       		<li class="${fn:containsIgnoreCase(request.requestURI, 'ruleSet') ? 'active' : ''}">
+						       			<a class="${fn:containsIgnoreCase(request.requestURI, 'ruleSet') ? 'active' : ''}" href="ruleSets">#{msg['rule_sets']}</a>
+						       		</li>		
+				            	</ul>
+				            </li>
+	 	                    <!--  <li class="${fn:containsIgnoreCase(request.requestURI, 'ruleEngine') ? 'active' : ''}">
+		                        <a href="#"><i class="fa fa-cog fa-fw"></i> #{msg['rule_engine']}<span class="fa arrow"></span></a>
+				            	<ul class="nav nav-second-level">					            	
+						       		<li class="${fn:containsIgnoreCase(request.requestURI, 'ruleEngine') ? 'active' : ''}">
+						       			<a class="${fn:containsIgnoreCase(request.requestURI, 'ruleEngine') ? 'active' : ''}" href="ruleEngine">#{msg['rule_engine']}</a>
+						       		</li>		
+				            	</ul>
+				            </li> 
+	 	                    <li class="${fn:containsIgnoreCase(request.requestURI, 'ruleExecutor') ? 'active' : ''}">
+		                        <a href="#"><i class="fa fa-play-circle fa-fw"></i> #{msg['rule_executor']}<span class="fa arrow"></span></a>
+				            	<ul class="nav nav-second-level">					            	
+						       		<li class="${fn:containsIgnoreCase(request.requestURI, 'ruleExecutor') ? 'active' : ''}">
+						       			<a class="${fn:containsIgnoreCase(request.requestURI, 'ruleExecutor') ? 'active' : ''}" href="ruleExecutor">#{msg['rule_executor']}</a>
+						       		</li>		
+				            	</ul>
+				            </li> -->
+				        </h:panelGroup>
+			            <h:panelGroup rendered="#{loginComponent.tenantAdminRole}">
+	 	                    <li class="${fn:containsIgnoreCase(request.requestURI, 'tenant') or fn:containsIgnoreCase(request.requestURI, 'user') ? 'active' : ''}">
+		                        <a href="#"><i class="fa fa-user fa-fw"></i> #{msg['administration']}<span class="fa arrow"></span></a>
+				            	<ul class="nav nav-second-level">					            		
+						       		<li class="${fn:containsIgnoreCase(request.requestURI, 'user') ? 'active' : ''}">
+						       			<a class="${fn:containsIgnoreCase(request.requestURI, 'user') ? 'active' : ''}" href="users">#{msg['users']}</a>
+						       		</li>		
+				            	</ul>
+				            </li>
+			            </h:panelGroup>
+ 			            <h:panelGroup rendered="#{loginComponent.tenantAdminRole}">
+			            	<li class="${fn:containsIgnoreCase(request.requestURI, msg['subscription_management']) or fn:containsIgnoreCase(request.requestURI, msg['subscribers']) or fn:containsIgnoreCase(request.requestURI, msg['subscriptions']) ? 'active' : ''}">
+			            		<a href="subscriptionManagement"><i class="fa fa-list fa-fw"></i>#{msg['subscription_management']}<span class="fa arrow"></span></a>
+			            		<ul class="nav nav-second-level">				            	  	                                
+	                                <li class="${fn:containsIgnoreCase(request.requestURI, 'subscribers') ? 'active' : ''}">
+	                                    <a class="${fn:containsIgnoreCase(request.requestURI, 'subscribers') ? 'active' : ''}" href="subscribers">#{msg['subscribers']}</a>
+	                                </li>              
+	                            </ul>
+                                <ul class="nav nav-second-level">                                                                   
+                                    <li class="${fn:containsIgnoreCase(request.requestURI, 'subscriptions') ? 'active' : ''}">
+                                        <a class="${fn:containsIgnoreCase(request.requestURI, 'subscriptions') ? 'active' : ''}" href="subscriptions">#{msg['subscriptions']}</a>
+                                    </li>              
+                                </ul>
+			            	</li>
+			            </h:panelGroup>			            
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>		
+    </ui:composition>
+</html>
