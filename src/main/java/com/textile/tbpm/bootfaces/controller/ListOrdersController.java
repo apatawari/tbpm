@@ -1,8 +1,11 @@
 package com.textile.tbpm.bootfaces.controller;
 
+import java.io.IOException;
 import java.util.List;
 
+import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
+import javax.servlet.http.HttpServletResponse;
 
 import org.ocpsoft.rewrite.annotation.Join;
 import org.ocpsoft.rewrite.annotation.RequestAction;
@@ -20,12 +23,12 @@ import com.textile.tbpm.bootfaces.persistence.OrderInwardRepository;
 /**
  * The Class ListOrdersController.
  */
-@Scope (value = "session")
-@Component (value = "listOrders")
+@Scope(value = "session")
+@Component(value = "listOrders")
 @ELBeanName(value = "listOrders")
 @Join(path = "/", to = "/order/order-list.jsf")
 public class ListOrdersController {
-	
+
 	/** The order repository. */
 	@Autowired
 	private OrderInwardRepository orderInwardRepository;
@@ -33,42 +36,29 @@ public class ListOrdersController {
 	/** The order entries. */
 	@Autowired
 	private List<OrderInwardEntry> orderEntries;
-	
+
 	/** The search string. */
 	String searchString = null;
-	
+
 	/** The search on. */
 	String searchOn = "PartyName";
-	
-	
-	
+
 	/**
 	 * Search by party name.
 	 *
-	 * @param keyword the keyword
+	 * @param keyword
+	 *            the keyword
 	 */
-	public void searchByPartyName(String keyword) {
-		
-		if(searchOn.equals("PartyName"))
-			orderEntries = orderInwardRepository.findByPartyNameIgnoreCaseContaining(keyword);
-		else if(searchOn.equals("Quality"))
-			orderEntries = orderInwardRepository.findByQualityIgnoreCaseContaining(keyword);
+	public void searchBy() {
+
+		if (searchOn.equals("PartyName"))
+			orderEntries = orderInwardRepository.findByPartyNameIgnoreCaseContaining(searchString);
+		else if (searchOn.equals("Quality"))
+			orderEntries = orderInwardRepository.findByQualityIgnoreCaseContaining(searchString);
 		else
-			orderEntries = orderInwardRepository.findByMarkaIgnoreCaseContaining(keyword);
-	}
-	
-	
-	/**
-	 * Search string changed
-	 *
-	 * @param vce the vce
-	 */
-	public void searchStringChanged(ValueChangeEvent vce)
-	{
-		searchByPartyName((String) vce.getNewValue());
+			orderEntries = orderInwardRepository.findByMarkaIgnoreCaseContaining(searchString);
 	}
 
-	
 	/**
 	 * Gets the search string.
 	 *
@@ -81,7 +71,8 @@ public class ListOrdersController {
 	/**
 	 * Sets the search string.
 	 *
-	 * @param searchString the new search string
+	 * @param searchString
+	 *            the new search string
 	 */
 	public void setSearchString(String searchString) {
 		this.searchString = searchString;
@@ -99,7 +90,8 @@ public class ListOrdersController {
 	/**
 	 * Sets the search on.
 	 *
-	 * @param searchOn the new search on
+	 * @param searchOn
+	 *            the new search on
 	 */
 	public void setSearchOn(String searchOn) {
 		this.searchOn = searchOn;
@@ -114,7 +106,7 @@ public class ListOrdersController {
 	public void loadData() {
 		orderEntries = orderInwardRepository.findAllByOrderByLotNumberAsc();
 	}
-	
+
 	/**
 	 * Gets the order inward entries.
 	 *
@@ -127,7 +119,8 @@ public class ListOrdersController {
 	/**
 	 * Delete.
 	 *
-	 * @param orderInwardEntry the order inward entry
+	 * @param orderInwardEntry
+	 *            the order inward entry
 	 * @return the string
 	 */
 	public String delete(OrderInwardEntry orderInwardEntry) {
@@ -135,5 +128,5 @@ public class ListOrdersController {
 		loadData();
 		return null;
 	}
-	
+
 }
